@@ -11,8 +11,6 @@ const Character = ({ url }) => {
       .then(res => setCharacter(res.data))
   }, [])
 
-  useEffect(() => console.log(character), [character])
-
   return (
     <>
       {character && (
