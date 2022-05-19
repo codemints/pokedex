@@ -10,7 +10,8 @@ export default defineConfig({
   resolve: {
     alias: {
       '@scss': path.resolve(__dirname, './src/assets/scss'),
-      '@ico': path.resolve(__dirname, './src/assets/ico')
+      '@ico': path.resolve(__dirname, './src/assets/ico'),
+      '@comps': path.resolve(__dirname, './src/components'),
     }
   }
 })
