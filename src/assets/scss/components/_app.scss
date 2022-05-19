@@ -1,13 +1,19 @@
 main {
-  padding-inline: 5rem;
+  padding-inline: 2rem;
   padding-block: 3.6rem;
 }
 .char__container {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: repeat(auto-fill, minmax(27rem, 1fr));
   grid-gap: 2rem;
 
   max-width: 114rem;
   width: 100%;
   margin-inline: auto;
+}
+
+@media only screen and (min-width: 992px) {
+  main {
+    padding-inline: 5rem;
+  }
 }
