@@ -1,0 +1,41 @@
+@use "@scss/abstracts/variables" as *;
+
+$colors: (
+  grass: #9bcc50,
+  poison: #b97fc9,
+  fire: #fd7d24,
+  water: #4592c4,
+  electric: #fdbe1e,
+  flying: #3dc7ef,
+  bug: #729f3f,
+  normal: #a4acaf,
+  ground: #796553,
+  fairy: #fdb9e9,
+  fighting: #ba3539,
+  psychic: #c14797,
+  rock: #918378,
+  steel: #9eb7b8,
+  ghost: #7b62a3,
+  ice: #6acff4,
+  dragon: #5f493a,
+);
+
+@mixin colorUtils($attr: 'color', $prefix: '-') {
+  @each $key, $val in $colors {
+    &#{$prefix}#{$key} {
+      #{$attr}: $val;
+    }
+  }
+}
+
+.text {
+  @include colorUtils;
+}
+
+.bg {
+  @include colorUtils('background-color');
+}
+
+.border {
+  @include colorUtils('border-color');
+}

@@ -1,3 +1,99 @@
-.character__img {
-  border-radius: 50%;
+@use "@scss/abstracts/variables" as *;
+
+.char__card {
+
+  background-color: white;
+  border-radius: 0.5rem;
+
+  overflow: hidden;
 }
+
+.char__card--inner {
+  background-color: white;
+  margin: 0.625rem;
+}
+
+.char__color {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-inline: 1.25rem;
+  padding-block: 0.625rem;
+
+  i {
+    color: white;
+    font-size: 1.6rem;
+
+    margin-left: 0.625rem;
+  }
+}
+
+.char__id {
+  p {
+    color: white;
+    font-size: 1.8rem;
+    font-family: $font-heading;
+  }
+}
+
+.char__overview,
+.char__details {
+  padding-inline: 1.25rem;
+}
+
+.char__overview {
+  position: relative;
+  padding-top: 1.25rem;
+}
+
+.char__img {
+  position: relative;
+  background-color: #f2f2f2;
+  
+  img {
+    width: 14.4rem;
+    margin-inline: auto;
+  }
+}
+
+.char__stats {
+  display: flex;
+  justify-content: space-between;
+
+  margin-top: 0.625rem;
+  padding-inline: 1.25rem;
+
+  p {
+    font-size: 1.25rem;
+    font-weight: 600;
+  }
+}
+
+.char__details {
+  padding-block: 1.25rem;
+  
+  h2 {
+    color: $theme-800;
+    font-size: 3.2rem;
+    font-family: $font-heading;
+  }
+}
+
+.char__types {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+
+  p {
+    flex: 0 1 calc(33% - 1.25rem);
+
+    color: white;
+    font-size: 1.4rem;
+    text-align: center;
+
+    border-radius: 0.25rem;
+    padding-block: 0.25rem;
+  }
+}
+
+
