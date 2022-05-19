@@ -8,8 +8,8 @@ function App() {
   const [poke, setPoke] = useState(null)
   const base = 'https://pokeapi.co/api/v2'
 
-  const limit = 30;
-  const offset = 151;
+  const limit = 150;
+  const offset = 0;
 
   useEffect(() => {
       axios

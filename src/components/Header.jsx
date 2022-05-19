@@ -8,9 +8,9 @@ const Header = () => {
       </div>
       <div className="social">
         <a href="https://github.com/codemints" target="_blank"><i class="fa-brands fa-github-alt"></i></a>
-        <a href="" target="_blank"><i class="fa-brands fa-codepen"></i></a>
+        <a href="https://codepen.io/codemints" target="_blank"><i class="fa-brands fa-codepen"></i></a>
         <a href="https://twitter.com/iamcodemints" target="_blank"><i class="fa-brands fa-twitter"></i></a>
-        <a href="" target="_blank"><i class="fa-brands fa-linkedin-in"></i></a>
+        <a href="https://www.linkedin.com/in/codemints/" target="_blank"><i class="fa-brands fa-linkedin-in"></i></a>
       </div>
     </header>
   )
