@@ -18,6 +18,7 @@ $colors: (
   ghost: #7b62a3,
   ice: #6acff4,
   dragon: #5f493a,
+  dark: #2b3940,
 );
 
 @mixin colorUtils($attr: 'color', $prefix: '-') {

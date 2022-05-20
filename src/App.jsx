@@ -2,13 +2,14 @@ import { useState, useEffect } from 'react'
 import axios from 'axios'
 
 import Header from '@comps/Header'
+import Filter from '@comps/Filter'
 import Character from '@comps/Character'
 
 function App() {
   const [poke, setPoke] = useState(null)
   const base = 'https://pokeapi.co/api/v2'
 
-  const limit = 150;
+  const limit = 151;
   const offset = 0;
 
   useEffect(() => {
@@ -20,6 +21,7 @@ function App() {
   return (
     <>
     <Header/>
+    <Filter />
     <main>
       {poke && 
         <div className="char__container">

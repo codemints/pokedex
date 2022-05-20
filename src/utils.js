@@ -16,6 +16,7 @@ export const typeIcons = {
   ghost: 'fa-ghost',
   ice: 'fa-snowflake',
   dragon: 'fa-dragon',
+  dark: 'fa-moon'
 }
 
 export const convertMeasurement = (measurement, divisor) => {
