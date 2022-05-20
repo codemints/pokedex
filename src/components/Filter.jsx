@@ -1,17 +1,29 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
 import { typeIcons } from '@/src/utils'
+import CardContext from '@src/CardContext'
+import { getPokemonType } from '@src/pokemon'
+import { formatSelectedType, formatPokemonObject } from '@src/utils'
+import { getAllPokemon } from '../pokemon'
 
 const Filter = () => {
   const [selectedOption, setSelectedOption] = useState('All')
-  const [selectState, setSelectState] = useState(false)
+  const [isOpen, setIsOpen] = useState(false)
+
+  const { pokemonGroup, updatePokemonGroup } = useContext(CardContext)
   
-  const handleSelect = (key) => {
-    const first = key.slice(0, 1).toUpperCase()
-    const rest = key.slice(1)
-    const all = first.concat(rest)
+  const handleTypeSelect = async (type) => {
+    const selectedType = formatSelectedType(type)
+    setSelectedOption(selectedType)
+    setIsOpen(!isOpen)
     
-    setSelectedOption(all)
-    setSelectState(!selectState)
+    if ( type === 'All' ) {
+      const fetchAll = await getAllPokemon()
+      updatePokemonGroup(fetchAll.data.results)
+    } else {
+      const fetchedPokemonType = await getPokemonType(type)
+      const pokemonData = formatPokemonObject(fetchedPokemonType.data.pokemon)
+      updatePokemonGroup(pokemonData)
+    }
   }
   
   return (
@@ -20,19 +32,19 @@ const Filter = () => {
         <div className="custom__select">
           <div
             className="select__label"
-            onClick={() => setSelectState(!selectState)}>
+            onClick={() => setIsOpen(!isOpen)}>
             <label>Filter By Type: <span>{ selectedOption }</span></label>
             
-            {selectState === false
+            {isOpen === false
               ? ( <i className="fa-solid fa-chevron-down"></i> )
               : ( <i className="fa-solid fa-chevron-up"></i> )
           }
           </div>
-          {selectState === true &&
+          {isOpen === true &&
             <ul>
               <li
                 className="type"
-                onClick={ () => handleSelect('All') }>
+                onClick={ () => handleTypeSelect('All') }>
                 All
               </li> 
               {Object.keys(typeIcons).map((key, index) => (
@@ -40,7 +52,7 @@ const Filter = () => {
                   key={ index }
                   data-option-value={ key }
                   className={ `type type-${ index + 1 } type-${ key }` }
-                  onClick={ () => handleSelect(key) }>
+                  onClick={ () => handleTypeSelect(key) }>
                   { key }
                 </li>
               ))}
