@@ -1,0 +1,49 @@
+@use "@scss/abstracts/variables" as *;
+
+.toast__wrapper {
+  position: absolute;
+  top: 7vh;
+  left: calc(50vw - ( 50rem / 2 ));
+
+  width: 50rem;
+
+  background-color: $theme-800;
+  border: 2px solid $theme-yellow;
+  padding: 5rem;
+  box-shadow: 0.5rem 0.5rem 0.85rem rgba(0, 0, 0, 0.35);
+  transition: $base;
+  z-index: 3;
+
+  h2 {
+    color: white;
+    font-size: 2.8rem;
+    font-family: $font-heading;
+    text-align: center;
+  }
+}
+
+.show-enter,
+.show-exit-active {
+  opacity: 0;
+  transform: translateY(-6rem);
+}
+.show-enter-active {
+  animation: wobble 0.6s ease-in-out;
+}
+.show-exit {
+  opacity: 1;
+}
+
+@keyframes wobble {
+  0% { transform: translateY(-6rem); opacity: 0 }
+  50% { transform: translateY(0); }
+  60% { transform: translateX(1rem); }
+  65% { transform: translateX(-1rem); }
+  70% { transform: translateX(0.8rem); }
+  75% { transform: translateX(-0.8rem); }
+  80% { transform: translateX(0.6rem); }
+  85% { transform: translateX(-0.6rem); }
+  90% { transform: translateX(0.4rem); }
+  95% { transform: translateX(-0.4rem); }
+  100% { transform: translateX(0); }
+}

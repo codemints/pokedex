@@ -1,19 +1,34 @@
-import { useState, useEffect, useContext } from 'react'
+import { useState, useRef, useContext } from 'react'
 import CardContext from '@src/CardContext'
 
 import { singlePokemonSearch } from '@src/pokemon'
 
 const FilterSearch = () => {
   const [searchFor, setSearchFor] = useState(null)
-  const { updatePokemonGroup } = useContext(CardContext)
+  const { updatePokemonGroup, updateToast } = useContext(CardContext)
+
+  const inputRef = useRef(null)
   
   const handleInput = (e) => {
     setSearchFor(e.target.value)
   }
+
+  const resetInput = () => {
+    inputRef.current.value = ''
+    inputRef.current.focus()
+  }
   
   const handleSearch = async () => {
-    if ( searchFor === null ) return
+    if ( searchFor === null ) {
+      return updateToast(
+        true,
+        'Please enter a Pokémon name or ID'
+      )
+    }
     const search = searchFor.toLowerCase()
+
+    resetInput()
+    
     try {
       const fetchSearch = await singlePokemonSearch(search)
       updatePokemonGroup([{
@@ -32,6 +47,7 @@ const FilterSearch = () => {
   return (
     <div className="filter__search">
         <input
+          ref={ inputRef }
           onChange={ handleInput }
           className="search__field"
           type="text"
