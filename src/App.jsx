@@ -1,5 +1,4 @@
 import { useEffect, useContext } from 'react'
-import { CSSTransition } from 'react-transition-group'
 import { getAllPokemon, singlePokemonSearch } from '@src/pokemon'
 import CardContext from '@src/CardContext'
 
@@ -23,12 +22,7 @@ function App() {
   return (
     <>
       {toast.show && (
-        <CSSTransition
-          in={ toast.show }
-          timeout={ 600 }
-          classNames='show'>
-          <Toast message={ toast.message } />
-        </CSSTransition>
+        <Toast message={ toast.message } toast={ toast } />
       )}
       <Header/>
       <Controls />
