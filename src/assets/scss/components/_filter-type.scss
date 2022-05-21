@@ -1,20 +1,8 @@
 @use "@scss/abstracts/variables" as *;
 
-section.filter {
-  padding-inline: 5rem;
-  padding-block: 2rem;
-}
-
-.filter__wrapper {
-  max-width: 114rem;
-  width: 100%;
-
-  margin-inline: auto;
-}
-
 .custom__select {
   position: relative;
-  max-width: 26rem;
+  min-width: 27rem;
 
   
   ul {

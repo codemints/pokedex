@@ -1,0 +1,14 @@
+@use "@scss/abstracts/variables" as *;
+
+.filter__search {
+  display: flex;
+  gap: 1.25rem;
+  height: 100%
+}
+
+.search__field {
+  font-size: 1.8rem;
+  min-width: 35rem;
+  border: 2px solid $theme-800;
+  padding-inline: 2rem;
+}

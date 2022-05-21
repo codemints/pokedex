@@ -13,3 +13,7 @@ export const getPokemonType = (type='grass', limit = 20, offset = 0) => {
 export const getSinglePokemon = (url) => {
   return axios.get(url)
 }
+
+export const singlePokemonSearch = (id) => {
+  return axios.get(`/pokemon/${id}`)
+}

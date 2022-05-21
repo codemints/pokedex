@@ -16,3 +16,26 @@ p,
 li {
   font-size: 1.6rem;
 }
+
+input {
+  &:focus {
+    outline: none;
+    border-color: $theme-red;
+    border-radius: 0;
+    box-shadow: 0.2rem 0.2rem 0.5rem rgba(0, 0, 0, 0.2);
+  }
+}
+
+[data-button="search"] {
+  color: white;
+  font-size: 1.8rem;
+  height: 4.8rem;
+  width: 4.8rem;
+  background-color: $theme-800;
+
+  &:focus {
+    outline: none;
+    border-radius: 0;
+    box-shadow: 0.125rem 0.125rem 0.25rem rgba(0, 0, 0, 0.45);
+  }
+}

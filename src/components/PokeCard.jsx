@@ -1,11 +1,8 @@
-import { useState, useEffect, useContext } from 'react'
-import axios from 'axios'
+import { useState, useEffect } from 'react'
 import { convertMeasurement, typeIcons } from '../utils'
 import { getSinglePokemon } from '@src/pokemon'
-import CardContext from '@src/CardContext'
 
-const Character = ({ url }) => {
-  const { pokemon } = useContext(CardContext)
+const PokeCard = ({ url }) => {
   const [singlePokemon, setSinglePokemon] = useState(null)
 
   useEffect(() => {
@@ -15,7 +12,7 @@ const Character = ({ url }) => {
     }
 
     fetchSinglePokemon()
-  }, [pokemon, singlePokemon])
+  }, [singlePokemon])
 
   return (
     <>
@@ -73,4 +70,4 @@ const Character = ({ url }) => {
   )
 }
 
-export default Character
+export default PokeCard

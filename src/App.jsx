@@ -1,10 +1,10 @@
-import { useState, useEffect, useContext } from 'react'
-import { getAllPokemon } from '@src/pokemon'
+import { useEffect, useContext } from 'react'
+import { getAllPokemon, singlePokemonSearch } from '@src/pokemon'
 import CardContext from '@src/CardContext'
 
 import Header from '@comps/Header'
-import Filter from '@comps/Filter'
-import Character from '@comps/Character'
+import Controls from '@comps/Controls'
+import PokeCard from '@comps/PokeCard'
 
 function App() {
   const { pokemonGroup, updatePokemonGroup } = useContext(CardContext)
@@ -21,13 +21,13 @@ function App() {
   return (
     <>
       <Header/>
-      <Filter />
+      <Controls />
       <main>
         {pokemonGroup && 
           <div className="char__container">
             {pokemonGroup.map((char, index) => {
               return (
-                <Character
+                <PokeCard
                   key={ index }
                   url={ char.url }
                 />
