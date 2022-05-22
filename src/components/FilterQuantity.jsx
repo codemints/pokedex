@@ -30,8 +30,6 @@ const FilterQuantity = () => {
     }
   }
 
-  useEffect(() => console.log(show), [show])
-
   const getKeyData = (event, elementRef) => {
     const val = elementRef.current.value
     const char = event.nativeEvent.data
@@ -70,33 +68,6 @@ const FilterQuantity = () => {
   
   return (
     <div className="filter__quantity">
-      <div className="filter__show">
-        <h4>Show:</h4>
-        
-        <div className="input__group">
-          <InputButton
-            content="-"
-            mutate={ show }
-            setMutate={ setShow }
-            field={ showRef.current }
-          />
-          
-          <input
-            ref={ showRef }
-            onChange={ (e) => setShowCount(e, showRef) }
-            onKeyUp={ (e) => checkForDelete(e, show, setShow) }
-            type="text"
-            placeholder={ show }/>
-            
-          <InputButton
-            content="+"
-            mutate={ show }
-            setMutate={ setShow }
-            field={ showRef.current }
-          />
-        </div>
-      </div>
-      
       <div className="filter__start">
         <h4>Start at:</h4>
         
@@ -120,6 +91,33 @@ const FilterQuantity = () => {
             mutate={ start }
             setMutate={ setStart }
             field={ startRef.current }
+          />
+        </div>
+      </div>
+      
+      <div className="filter__show">
+        <h4>Show:</h4>
+        
+        <div className="input__group">
+          <InputButton
+            content="-"
+            mutate={ show }
+            setMutate={ setShow }
+            field={ showRef.current }
+          />
+          
+          <input
+            ref={ showRef }
+            onChange={ (e) => setShowCount(e, showRef) }
+            onKeyUp={ (e) => checkForDelete(e, show, setShow) }
+            type="text"
+            placeholder={ show }/>
+            
+          <InputButton
+            content="+"
+            mutate={ show }
+            setMutate={ setShow }
+            field={ showRef.current }
           />
         </div>
       </div>
