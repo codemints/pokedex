@@ -21,9 +21,7 @@ function App() {
 
   return (
     <>
-      {toast.show && (
-        <Toast message={ toast.message } toast={ toast } />
-      )}
+      <Toast message={ toast.message } toast={ toast } />
       <Header/>
       <Controls />
       <main>

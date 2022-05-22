@@ -16,14 +16,16 @@ const FilterSearch = () => {
   const resetInput = () => {
     inputRef.current.value = ''
     inputRef.current.focus()
+    setSearchFor(null)
   }
   
   const handleSearch = async () => {
     if ( searchFor === null ) {
-      return updateToast(
+      updateToast(
         true,
         'Please enter a Pokémon name or ID'
       )
+      return setTimeout(() => updateToast(false, ''), 3000)
     }
     const search = searchFor.toLowerCase()
 
@@ -37,6 +39,12 @@ const FilterSearch = () => {
       }])
     } catch ( err ) {
       console.log(err)
+      resetInput()
+      updateToast(
+        true,
+        'No Pokemon by that name. Please check spelling or ID and search again.'
+      )
+      return setTimeout(() => updateToast(false, ''), 3000)
     }
     // const fetchSearch = await singlePokemonSearch(search)
     // if ( fetchSearch.response.status >= 400 ) {

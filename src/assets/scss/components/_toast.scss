@@ -2,7 +2,6 @@
 
 .toast__wrapper {
   position: absolute;
-  top: 7vh;
   left: calc(50vw - ( 50rem / 2 ));
 
   width: 50rem;
@@ -11,7 +10,6 @@
   border: 2px solid $theme-yellow;
   padding: 5rem;
   box-shadow: 0.5rem 0.5rem 0.85rem rgba(0, 0, 0, 0.35);
-  transition: $base;
   z-index: 3;
 
   h2 {

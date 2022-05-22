@@ -1,9 +1,28 @@
-const Toast = ({ message }) => {
-  console.log(toast.show)
+
+import { AnimatePresence, motion } from 'framer-motion'
+
+const Toast = ({ message, toast }) => {
+  const variants = {
+    visible: { opacity: 1, top: '7vh' },
+    hidden: { opacity: 0, top: 0 }
+  }
+  
   return (
-    <div className="toast__wrapper">
-      <h2>{ message }</h2>
-    </div>
+    <AnimatePresence>
+      {toast.show && (
+        <motion.div
+          className="toast__wrapper"
+          variants={variants}
+          initial='hidden'
+          animate='visible'
+          transition={{
+            ease: 'easeInOut',
+            duration: 0.1,
+          }}>
+          <h2>{ message }</h2>
+      </motion.div>
+      )}
+    </AnimatePresence>
   )
 }
 
