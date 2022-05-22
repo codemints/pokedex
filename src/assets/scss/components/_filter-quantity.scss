@@ -4,11 +4,15 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  flex: 0 0 100%;
   gap: 3.6rem;
+  flex: 0 0 100%;
 
   background-color: #f2f2f2;
   padding-block: 1.25rem;
+
+  > div {
+    // flex: 1;
+  }
 
   .filter__show,
   .filter__start {
@@ -33,5 +37,26 @@
     text-align: center;
     width: 7.5rem;
     border: 2px solid $theme-800;
+  }
+}
+
+.filter__submit {
+
+  button {
+    color: white;
+    font-size: 1.8rem;
+    font-family: $font-heading;
+
+    min-width: 24rem;
+
+    background-color: $theme-red;
+    border: 2px solid $theme-red;
+
+    transition: all 0.125s ease-out;
+
+    &:hover {
+      color: $theme-red;
+      background-color: transparent;
+    }
   }
 }

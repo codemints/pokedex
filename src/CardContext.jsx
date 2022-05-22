@@ -5,6 +5,7 @@ const CardContext = createContext()
 export const CardProvider = ({children}) => {
   const [pokemonGroup, setPokemonGroup] = useState(null)
   const [singlePokemon, setSinglePokemon] = useState(null)
+  const [currentType, setCurrentType] = useState('all')
   const [toast, setToast] = useState({show: false, message: null})
 
   const updateSinglePokemon = (data) => {
@@ -13,6 +14,10 @@ export const CardProvider = ({children}) => {
 
   const updatePokemonGroup = (data) => {
     setPokemonGroup(data)
+  }
+
+  const updateCurrentType = (type) => {
+    setCurrentType(type)
   }
 
   const updateToast = (bool, msg) => {
@@ -35,6 +40,8 @@ export const CardProvider = ({children}) => {
       updateSinglePokemon,
       toast,
       updateToast,
+      currentType,
+      updateCurrentType,
     }}>
       { children }
     </CardContext.Provider>

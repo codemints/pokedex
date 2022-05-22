@@ -16,7 +16,13 @@ import { InputButton } from '@comps'
 import CardContext from '@src/CardContext'
 
 const FilterQuantity = () => {
-  const { updateToast, pokemonGroup } = useContext(CardContext)
+  const {
+    updateToast,
+    pokemonGroup,
+    updatePokemonGroup,
+    currentType
+  } = useContext(CardContext)
+  
   const [show, setShow] = useState(0)
   const [start, setStart] = useState(0)
 
@@ -62,8 +68,10 @@ const FilterQuantity = () => {
     
     if ( elementRef === showRef ) setShow(Number(elementRef.current.value))
     if ( elementRef === startRef ) setStart(Number(elementRef.current.value))
+  }
 
-    // console.log(pokemonGroup)
+  const filterOffset = () => {
+    updatePokemonGroup(pokemonGroup.slice(start, show))
   }
   
   return (
@@ -123,7 +131,9 @@ const FilterQuantity = () => {
       </div>
       
       <div className="filter__submit">
-        <button>GO!</button>
+        <button
+          onClick={ filterOffset }
+        >GO!</button>
       </div>
     </div>
   )

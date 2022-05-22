@@ -9,12 +9,14 @@ const FilterType = () => {
   const [selectedOption, setSelectedOption] = useState('All')
   const [isOpen, setIsOpen] = useState(false)
 
-  const { pokemonGroup, updatePokemonGroup } = useContext(CardContext)
+  const { pokemonGroup, updatePokemonGroup, updateCurrentType } = useContext(CardContext)
   
   const handleTypeSelect = async (type) => {
     const selectedType = formatSelectedType(type)
     setSelectedOption(selectedType)
     setIsOpen(!isOpen)
+
+    updateCurrentType(type)
     
     if ( type === 'All' ) {
       const fetchAll = await getAllPokemon()
