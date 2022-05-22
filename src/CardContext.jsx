@@ -20,6 +20,11 @@ export const CardProvider = ({children}) => {
       show: bool,
       message: msg,
     }))
+
+    setTimeout(() => setToast({
+      show: false,
+      message: null
+    }), 2500)
   }
 
   return (

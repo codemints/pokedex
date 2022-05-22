@@ -1,4 +1,3 @@
-
 import { AnimatePresence, motion } from 'framer-motion'
 
 const Toast = ({ message, toast }) => {
@@ -16,8 +15,15 @@ const Toast = ({ message, toast }) => {
           initial='hidden'
           animate='visible'
           transition={{
-            ease: 'easeInOut',
-            duration: 0.1,
+            opacity: {
+              ease: 'easeInOut',
+              duration: 0.05,
+            },
+            top: {
+              type: 'spring',
+              stiffness: 600,
+              duration: 0.1,
+            },
           }}>
           <h2>{ message }</h2>
       </motion.div>

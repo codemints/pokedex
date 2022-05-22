@@ -21,11 +21,10 @@ const FilterSearch = () => {
   
   const handleSearch = async () => {
     if ( searchFor === null ) {
-      updateToast(
+      return updateToast(
         true,
         'Please enter a Pokémon name or ID'
       )
-      return setTimeout(() => updateToast(false, ''), 3000)
     }
     const search = searchFor.toLowerCase()
 
@@ -46,10 +45,6 @@ const FilterSearch = () => {
       )
       return setTimeout(() => updateToast(false, ''), 3000)
     }
-    // const fetchSearch = await singlePokemonSearch(search)
-    // if ( fetchSearch.response.status >= 400 ) {
-    //   console.log('does not exist')
-    // }
   }
   
   return (

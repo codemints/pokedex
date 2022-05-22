@@ -1,0 +1,19 @@
+@use "@scss/abstracts/variables" as *;
+
+.input__button {
+  color: white;
+  font-size: 1.8rem;
+
+  min-height: 3.1rem;
+  aspect-ratio: 1 / 1;
+  background-color: $theme-800;
+
+  &:hover {
+    background-color: lighten($theme-800, 10%);
+  }
+
+  &.clicked {
+    color: $theme-yellow;
+    transform: scale(0.9);
+  }
+}

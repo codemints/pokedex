@@ -1,5 +1,4 @@
-import FilterType from '@comps/FilterType'
-import FilterSearch from '@comps/FilterSearch'
+import { FilterType, FilterSearch, FilterSort, FilterQuantity } from '@comps'
 
 const Controls = () => {
   return (
@@ -7,6 +6,8 @@ const Controls = () => {
       <div className="filters__wrapper">
         <FilterType/>
         <FilterSearch/>
+        <FilterSort/>
+        <FilterQuantity/>
       </div>
     </section>
   )

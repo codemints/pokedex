@@ -2,10 +2,7 @@ import { useEffect, useContext } from 'react'
 import { getAllPokemon, singlePokemonSearch } from '@src/pokemon'
 import CardContext from '@src/CardContext'
 
-import Header from '@comps/Header'
-import Controls from '@comps/Controls'
-import PokeCard from '@comps/PokeCard'
-import Toast from '@comps/Toast'
+import { Header, Controls, PokeCard, Toast } from '@comps'
 
 function App() {
   const { pokemonGroup, updatePokemonGroup, toast } = useContext(CardContext)

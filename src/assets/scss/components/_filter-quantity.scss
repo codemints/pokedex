@@ -1,0 +1,33 @@
+@use "@scss/abstracts/variables" as *;
+
+.filter__quantity {
+  display: flex;
+  align-items: center;
+  flex: 0 0 100%;
+  gap: 3.6rem;
+
+  .filter__show,
+  .filter__start {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+  }
+
+  .input__group {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  h4 {
+    color: $theme-600;
+    font-size: 1.8rem;
+    font-weight: 600;
+  }
+  input {
+    font-size: 1.8rem;
+    text-align: center;
+    width: 7.5rem;
+    border: 2px solid $theme-800;
+  }
+}
