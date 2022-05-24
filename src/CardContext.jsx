@@ -7,6 +7,7 @@ export const CardProvider = ({children}) => {
   const [singlePokemon, setSinglePokemon] = useState(null)
   const [currentType, setCurrentType] = useState('all')
   const [toast, setToast] = useState({show: false, message: null})
+  const [filterAttrs, setFilterAttrs] = useState([])
 
   const updateSinglePokemon = (data) => {
     setSinglePokemon(data)
@@ -29,7 +30,11 @@ export const CardProvider = ({children}) => {
     setTimeout(() => setToast({
       show: false,
       message: null
-    }), 2500)
+    }), 3000)
+  }
+
+  const updateFilterAttrs = (id, name) => {
+    
   }
 
   return (
@@ -42,6 +47,8 @@ export const CardProvider = ({children}) => {
       updateToast,
       currentType,
       updateCurrentType,
+      filterAttrs,
+      updateFilterAttrs,
     }}>
       { children }
     </CardContext.Provider>

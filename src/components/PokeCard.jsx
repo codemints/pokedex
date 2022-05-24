@@ -1,19 +1,23 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
 import { convertMeasurement, typeIcons } from '../utils'
 import { getSinglePokemon } from '@src/pokemon'
+import CardContext from '@src/CardContext'
 
 const PokeCard = ({ url }) => {
   const [singlePokemon, setSinglePokemon] = useState(null)
+  const { updateFilterAttrs } = useContext(CardContext)
 
   useEffect(() => {
     const fetchSinglePokemon = async () => {      
       const fetched = await getSinglePokemon(url)
       setSinglePokemon(fetched.data)
     }
-
+    
     fetchSinglePokemon()
   }, [singlePokemon])
-
+  
+  // updateFilterAttrs(singlePokemon.id, singlePokemon.name)
+  
   return (
     <>
       {singlePokemon && (

@@ -1,18 +1,6 @@
-//IF filterByType === all
-  // && show || start || start + show > pokemonGroup.length
-    //Make new Axios request to API with limit and offset values
-  //ELSE
-    //updatePokemonGroup to be pokemonGroup.slice offset & limit
-
-//IF show || start || start + show > pokemonGroup.length
-  //Trigger toast
-  //Include pokemonGroup.length in message
-  //Erase field value
-//ELSE
-  //updatePokemonGroup to be pokemonGroup.slice offset & limit
-
 import { useState, useRef, useContext, useEffect } from 'react'
 import { InputButton } from '@comps'
+import { getAllPokemon } from '@src/pokemon'
 import CardContext from '@src/CardContext'
 
 const FilterQuantity = () => {
@@ -25,6 +13,8 @@ const FilterQuantity = () => {
   
   const [show, setShow] = useState(0)
   const [start, setStart] = useState(0)
+  const [isFiltered, setIsFiltered] = useState(false)
+  const [prevGroup, setPrevGroup] = useState(null)
 
   const showRef = useRef(null)
   const startRef = useRef(null)
@@ -34,6 +24,13 @@ const FilterQuantity = () => {
       if ( event.target.value.length < 1 ) return setData(0)
       setData(Number(event.target.value))
     }
+  }
+
+  const resetValues = () => {
+    setShow(0)
+    setStart(0)
+    showRef.current.value = ''
+    startRef.current.value = ''
   }
 
   const getKeyData = (event, elementRef) => {
@@ -70,8 +67,44 @@ const FilterQuantity = () => {
     if ( elementRef === startRef ) setStart(Number(elementRef.current.value))
   }
 
-  const filterOffset = () => {
-    updatePokemonGroup(pokemonGroup.slice(start, show))
+  const filterOffset = async () => {
+    if ( start === 0 || show === 0 ) {
+      resetValues()
+      updateToast(
+        true,
+        '"Start" and "Show" values must be greater than 0'
+      )
+      return
+    }
+    const groupLength = pokemonGroup.length
+
+    if ( currentType.toLowerCase() === 'all' ) {
+      if ( show > groupLength || start > groupLength || (start + show) > groupLength ) {
+        setPrevGroup(pokemonGroup)
+        const newPokemonSet = await getAllPokemon(show + 1, start - 1)
+        updatePokemonGroup(newPokemonSet.data.results)
+        return resetValues()
+      }
+    }
+    
+    if ( show > groupLength || start > groupLength || (start + show) > groupLength) {
+      updateToast(
+        true,
+        `There are only ${groupLength} Pokémon in this group. "Start" and "Show" values cannot exceed the number of Pokémon in this group.`
+      )
+      
+      return resetValues()
+    }
+
+    setPrevGroup(pokemonGroup)
+    updatePokemonGroup(pokemonGroup.slice(start - 1, (start - 1) + show))
+    resetValues()
+    return setIsFiltered(true)
+  }
+
+  const resetFilters = () => {
+    updatePokemonGroup(prevGroup)
+    setIsFiltered(false)
   }
   
   return (
@@ -85,6 +118,7 @@ const FilterQuantity = () => {
             mutate={ start }
             setMutate={ setStart }
             field={ startRef.current }
+            isFiltered={ isFiltered }
           />
           
           <input
@@ -92,13 +126,15 @@ const FilterQuantity = () => {
             onChange={ (e) => setShowCount(e, startRef) }
             onKeyUp={ (e) => checkForDelete(e, show, setShow) }
             type="text"
-            placeholder={ start }/>
+            placeholder={ start }
+            disabled={ isFiltered }/>
             
           <InputButton
             content="+"
             mutate={ start }
             setMutate={ setStart }
             field={ startRef.current }
+            isFiltered={ isFiltered }
           />
         </div>
       </div>
@@ -112,6 +148,7 @@ const FilterQuantity = () => {
             mutate={ show }
             setMutate={ setShow }
             field={ showRef.current }
+            isFiltered={ isFiltered }
           />
           
           <input
@@ -119,13 +156,15 @@ const FilterQuantity = () => {
             onChange={ (e) => setShowCount(e, showRef) }
             onKeyUp={ (e) => checkForDelete(e, show, setShow) }
             type="text"
-            placeholder={ show }/>
+            placeholder={ show }
+            disabled={ isFiltered }/>
             
           <InputButton
             content="+"
             mutate={ show }
             setMutate={ setShow }
             field={ showRef.current }
+            isFiltered={ isFiltered }
           />
         </div>
       </div>
@@ -133,7 +172,15 @@ const FilterQuantity = () => {
       <div className="filter__submit">
         <button
           onClick={ filterOffset }
+          disabled={ isFiltered }
         >GO!</button>
+      </div>
+      
+      <div className="filter__reset">
+        <button
+          onClick={ resetFilters }
+          disabled={ !isFiltered }
+        >Reset</button>
       </div>
     </div>
   )

@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from 'react'
 
-const InputButton = ({ content, mutate, setMutate, field }) => {
+const InputButton = ({ content, mutate, setMutate, field, isFiltered }) => {
   const [newState, setNewState] = useState(0)
   const buttonRef = useRef(null)
 
@@ -31,6 +31,7 @@ const InputButton = ({ content, mutate, setMutate, field }) => {
       onMouseDown={ () => handleClick('add') }
       onMouseUp={ () => handleClick('remove')}
       className="input__button"
+      disabled={ isFiltered }
     >
       { content }
     </button>
