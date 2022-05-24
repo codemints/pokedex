@@ -34,7 +34,10 @@ export const CardProvider = ({children}) => {
   }
 
   const updateFilterAttrs = (id, name) => {
-    
+    setFilterAttrs((prevAttrs) => [...prevAttrs, {
+      id: id,
+      name: name
+    }])
   }
 
   return (

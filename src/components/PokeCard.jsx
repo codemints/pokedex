@@ -16,8 +16,6 @@ const PokeCard = ({ url }) => {
     fetchSinglePokemon()
   }, [singlePokemon])
   
-  // updateFilterAttrs(singlePokemon.id, singlePokemon.name)
-  
   return (
     <>
       {singlePokemon && (
