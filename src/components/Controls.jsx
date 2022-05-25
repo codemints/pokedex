@@ -6,7 +6,7 @@ const Controls = () => {
       <div className="filters__wrapper">
         <FilterType/>
         <FilterSearch/>
-        <FilterSort/>
+        {/* <FilterSort/> */}
         <FilterQuantity/>
       </div>
     </section>
