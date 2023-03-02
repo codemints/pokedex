@@ -14,7 +14,8 @@
     "framer-motion": "^6.3.3",
     "postcss-import": "^14.1.0",
     "react": "^18.0.0",
-    "react-dom": "^18.0.0"
+    "react-dom": "^18.0.0",
+    "react-window": "^1.8.8"
   },
   "devDependencies": {
     "@types/react": "^18.0.0",
