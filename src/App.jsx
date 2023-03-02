@@ -1,6 +1,6 @@
 import { useEffect, useContext, useState } from "react";
 import { useLiveQuery } from "dexie-react-hooks";
-import { FixedSizeList } from "react-window";
+import { FixedSizeGrid } from "react-window";
 
 import { getAllPokemon, singlePokemonSearch } from "@src/pokemon";
 import { db } from "./db";
@@ -23,10 +23,11 @@ function App() {
     fetchData();
   }, []);
 
-  const Item = ({ index, style }) => {
+  const Item = (props) => {
+    const index = props.columnIndex * 3 + props.rowIndex;
     return (
-      <div className="list-item" style={style}>
-        <PokeCard key={index} singlePokemon={allPokemon[index]} />
+      <div className="list-item" style={props.style}>
+        <PokeCard key={props.columnIndex} singlePokemon={allPokemon[index]} />
       </div>
     );
   };
@@ -38,15 +39,17 @@ function App() {
       <Controls />
       <main>
         {allPokemon && (
-          <FixedSizeList
+          <FixedSizeGrid
             className="pokemon-list"
+            columnCount={3}
+            columnWidth={500}
             height={1000}
-            itemCount={allPokemon.length}
-            itemSize={350}
+            rowCount={allPokemon.length / 3}
+            rowHeight={350}
             width={1800}
           >
             {Item}
-          </FixedSizeList>
+          </FixedSizeGrid>
         )}
       </main>
     </>
